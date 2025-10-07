@@ -182,7 +182,7 @@
         stopping = false;
         spinSpeed = 0;
         angle = angle % (2 * Math.PI);
-        showResult();
+        // result display removed as requested
         return;
       }
     }
@@ -203,24 +203,6 @@
     }
   }
 
-  function showResult() {
-    const sliceAngle = (2 * Math.PI) / numbers.length;
-    const normalizedAngle = (2 * Math.PI - (angle % (2 * Math.PI))) % (2 * Math.PI);
-    const selectedIndex = Math.floor(normalizedAngle / sliceAngle) % numbers.length;
-    const selectedNumber = numbers[selectedIndex];
-
-    // show result below spinner
-    let resultEl = document.getElementById("spinResult");
-    if (!resultEl) {
-      resultEl = document.createElement("div");
-      resultEl.id = "spinResult";
-      resultEl.style.fontSize = "2rem";
-      resultEl.style.marginTop = "10px";
-      document.body.appendChild(resultEl);
-    }
-    resultEl.textContent = `🎉 Landed on: ${selectedNumber}`;
-  }
-
   buildBtn.addEventListener("click", buildSpinner);
   spinnerContainer.addEventListener("click", spin);
   spinnerContainer.addEventListener("touchstart", spin);
@@ -231,6 +213,11 @@
     newColor.value = "#ffffff";
     colorPickersDiv.insertBefore(newColor, addColorBtn);
   });
+
+  buildSpinner();
+})();
+</script>
+
 
   buildSpinner();
 })();
